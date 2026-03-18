@@ -66,6 +66,130 @@ button:active {
 
 <h1>欢迎来到白极Hub</h1>
 
+<div id="info-box">
+    <div id="timezone" class="big glow"></div>
+    <div id="date" class="small"></div>
+    <div id="time" class="big glow"></div>
+    <div id="location" class="small"></div>
+</div>
+
+<style>
+#info-box {
+    text-align: center;
+    margin-top: 40px;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.big {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.small {
+    font-size: 16px;
+    opacity: 0.85;
+    margin-top: 6px;
+}
+
+.glow {
+    text-shadow: 0 0 10px rgba(255,255,255,0.8),
+                 0 0 20px rgba(255,255,255,0.6);
+}
+</style>
+
+<script>
+async function init() {
+    let timezoneText = "Time";
+    let timeZone = "UTC";
+    let locationText = "Loading...";
+
+    try {
+        let res = await fetch("https://ipapi.co/json/");
+        let data = await res.json();
+
+        let country = data.country;
+        let countryName = data.country_name;
+        let city = data.city;
+        let org = data.org || "";
+
+        timeZone = data.timezone || "UTC";
+
+        // 🌍 多语言模板
+        let langMap = {
+            "CN": {
+                time: "北京时间",
+                text: "当前出口IP："
+            },
+            "JP": {
+                time: "東京時間",
+                text: "現在の出口IP："
+            },
+            "US": {
+                time: "Local Time",
+                text: "Your Exit IP:"
+            },
+            "KR": {
+                time: "현재 시간",
+                text: "현재 출구 IP:"
+            }
+        };
+
+        let lang = langMap[country] || {
+            time: countryName + " Time",
+            text: "Exit IP:"
+        };
+
+        timezoneText = lang.time;
+
+        // 📍 位置文本（自动语言）
+        let loc = city ? (countryName + " · " + city) : countryName;
+
+        locationText = lang.text + " " + loc;
+
+        if (org) {
+            locationText += " | " + org;
+        }
+
+        // 🔥 黑科技附加
+        locationText += " ";
+
+    } catch (e) {
+        locationText = "Unable to detect network";
+    }
+
+    document.getElementById("timezone").innerText = timezoneText;
+    document.getElementById("location").innerText = locationText;
+
+    function updateTime() {
+        let now = new Date();
+
+        let dateStr = new Intl.DateTimeFormat(undefined, {
+            timeZone: timeZone,
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        }).format(now);
+
+        let timeStr = new Intl.DateTimeFormat(undefined, {
+            timeZone: timeZone,
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: false
+        }).format(now);
+
+        document.getElementById("date").innerText = dateStr;
+        document.getElementById("time").innerText = timeStr;
+    }
+
+    setInterval(updateTime, 1000);
+    updateTime();
+}
+
+init();
+</script>
+
 <!-- B站 -->
 <button onclick="window.location.href='https://space.bilibili.com/170119145'">
 <img src="bilibili.png">
