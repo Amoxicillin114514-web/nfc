@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>微信支付</title>
+
+<style>
+body {
+    margin:0;
+    background:#f7f7f7;
+    font-family:Arial;
+    text-align:center;
+}
+
+.container {
+    margin-top:60px;
+}
+
+img {
+    width:260px;
+    border-radius:12px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+.big-tip {
+    margin-top:20px;
+    font-size:18px;
+    font-weight:bold;
+    color:#09bb07;
+}
+
+.tip {
+    margin-top:10px;
+    font-size:14px;
+    color:#666;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h2>💚 微信支付</h2>
+
+<img src="wechat_qr.jepg">
+
+<div class="big-tip">长按二维码识别支付</div>
+<div class="tip">如果无法识别，请截图后打开微信扫一扫</div>
+
+<p onclick="window.location.href='weixin://'" style="color:#09bb07;margin-top:20px;">
+👉 点我打开微信
+</p>
+
+</div>
+
+</body>
+</html>

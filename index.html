@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>白极Hub</title>
+
+<style>
+body {
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:url('bg.PNG') no-repeat center center/cover;
+    color:#fff;
+}
+
+.overlay {
+    background:rgba(0,0,0,0.5);
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+h1 {
+    font-size:32px;
+    margin-bottom:30px;
+    text-shadow:0 0 10px rgba(0,0,0,0.8);
+}
+
+button {
+    width:85%;
+    max-width:320px;
+    padding:16px;
+    margin:10px;
+    font-size:16px;
+    border:none;
+    border-radius:12px;
+    color:#fff;
+    cursor:pointer;
+
+    /* 半透明关键 */
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(10px);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+}
+
+button img {
+    width:22px;
+    height:22px;
+}
+
+button:active {
+    opacity:0.7;
+}
+</style>
+
+</head>
+<body>
+
+<div class="overlay">
+
+<h1>欢迎来到白极Hub</h1>
+
+<!-- B站 -->
+<button onclick="window.location.href='https://space.bilibili.com/你的UID'">
+<img src="bilibili.png">
+B站主页
+</button>
+
+<!-- 推特 -->
+<button onclick="window.location.href='https://twitter.com/你的用户名'">
+<img src="twitter.png">
+推特主页
+</button>
+
+<!-- QQ -->
+<button onclick="window.location.href='mqqwpa://im/chat?chat_type=wpa&uin=你的QQ号&version=1'">
+<img src="qq.png">
+QQ联系
+</button>
+
+<!-- 支付宝 -->
+<button onclick="window.location.href='alipays://platformapi/startapp?saId=10000007&qrcode=你的支付宝收款码链接'">
+<img src="alipay.png">
+支付宝支付
+</button>
+
+<!-- 微信 -->
+<button onclick="window.location.href='wechat.html'">
+<img src="wechat.png">
+微信支付
+</button>
+
+</div>
+
+</body>
+</html>
